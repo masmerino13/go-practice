@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package streaming;
+
+service MetricsService {
+  rpc GetCPUUsage(Empty) returns MetricResponse();
+  rpc GetMemoryUsage(Empty) returns MetricResponse();
+  rpc GetCallStats(Empty) returns MetricResponse();
+}
+
+message Empty{}
+
+message MetricResponse {
+  string value = 1;
+}
