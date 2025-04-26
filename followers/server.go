@@ -11,8 +11,9 @@ func main() {
 }
 
 type User struct {
-	ID   int
-	Name string
+	ID    int
+	Name  string
+	Likes []string
 }
 
 type Post struct {
@@ -27,9 +28,9 @@ type Follow struct {
 }
 
 var Users = []User{
-	{1, "Chepe"},
-	{2, "Jose"},
-	{3, "Mario"},
+	{1, "Chepe", []string{"cheese", "bacon"}},
+	{2, "Jose", []string{"cheese", "bacon"}},
+	{3, "Mario", []string{"cheese", "bacon"}},
 }
 
 var Follows = []Follow{
@@ -58,7 +59,7 @@ func PostByUser(uid int) ([]Post, error) {
 	feed := make([]Post, 0)
 
 	for _, p := range Posts {
-		if _, ok := followed[p.Author]; ok {
+		if followed[p.Author] {
 			feed = append(feed, p)
 		}
 	}
